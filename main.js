@@ -37,7 +37,19 @@ app.on('ready', function() {
         user_lang = locale;
     });
 
+    const path = require('path');
+    var user_home = app.getPath('appData');
+    let wideVineDrmDir = path.join(user_home, 'Google', 'Chrome',
+        'WidevineCdm', '1.4.8.962', '_platform_specific', 'mac_x64', 'widevinecdmadapter.plugin');
+    console.log(wideVineDrmDir);
+    app.commandLine.appendSwitch('widevine-cdm-path', wideVineDrmDir);
+    app.commandLine.appendSwitch('widevine-cdm-version', '1.4.8.962');
+
     mainWindow = new BrowserWindow({
+        webPreferences: {
+            // The `plugins` have to be enabled.
+            plugins: true
+        },
         width: 1000,
         height: 600
     });
