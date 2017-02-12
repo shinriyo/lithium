@@ -12,9 +12,7 @@ crashReporter.start({
     autoSubmit: true
 });
 
-const ipcMain = require('electron').ipcMain;
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app, BrowserWindow, ipcMain } = require('electron');
 let mainWindow;
 
 app.on('window-all-closed', function() {
@@ -43,6 +41,9 @@ app.on('ready', function() {
         width: 1000,
         height: 600
     });
+
+    // 手前
+    mainWindow.setAlwaysOnTop(true);
 
     var template = [{
         // label: 'Electron',
@@ -99,6 +100,7 @@ app.on('ready', function() {
     }];
 
     mainWindow.loadURL('file://' + __dirname + '/index.html');
+    ipcMain.on('ipc', (event, arg) => console.log(arg));
 
     mainWindow.on('closed', function() {
         mainWindow = null;
