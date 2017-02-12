@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#menu {
+    position: absolute;
+    left: 10px;
+    top: 900px;
+}
+
+#canvas {
+    position: absolute;
+    /*background-color: black;*/
+    z-index: 0;
+}
+
+
+/* 矩形選択 */
+
+#display {
+    position: absolute;
+    /*border: solid 1px;*/
+    z-index: 1;
+}
+
+#drawing {
+    position: absolute;
+    z-index: 2;
+    /*displayより大きく*/
+}
+
+#container {
+    position: absolute;
+    /*border: solid 1px;*/
+    z-index: 3;
+}
+
+
+/*zは大きいほうが手前*/

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <!--<title>タイトルは書かないこと</title>-->
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <div>
+                    ファイルの最終保存:
+                </div>
+                <div>
+                    ディスク上のサイズ:
+                </div>
+                <div>
+                    解像度:
+                </div>
+                <div>
+                    幅:<input type="text" size="30" id="width" width='10px' />
+                </div>
+                <div>
+                    高さ:<input type="text" size="30" id="height" width='10px '/>
+                </div>
+                <div>
+                    単位
+                </div>
+                <div>
+                    <input type="radio" name="unit" id="inch" checked="checked" />
+                    <label for="inch">インチ</label>
+
+                    <input type="radio" name="unit" id="cm" />
+                    <label for="cm">cm</label>
+
+                    <input type="radio" name="unit" id="pixel" />
+                    <label for="pixel">ピクセル</label>
+                </div>
+                <div>
+                    色
+                </div>
+                <div>
+                    <input type="radio" name="color" id="mono" />
+                    <label for="mono">白黒</label>
+
+                    <input type="radio" name="color" id="mono" />
+                    <label for="mono">カラー</label>
+                </div>
+            </td>
+            <td>
+                <input type="button" id="ok" value="OK" />
+                <input type="button" id="cancel" value="キャンセル" />
+                <input type="button" id="normal" value="規定値" />
+            </td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript ">
+    var width = document.getElementById('width');
+    var height = document.getElementById('height');
+    width.value = '1';
+    height.value = '1';
+ 
+    var ok_btn = document.getElementById('ok');
+    var cancel_btn = document.getElementById('cancel');
+    var normal_btn = document.getElementById('normal');
+
+    // OKボタン
+    ok_btn.addEventListener("click", function() {
+        window.close();
+        // var focused_window = BrowserWindow.getFocusedWindow();
+        // focused_window.webContents.send('resize-save');
+    }, false);
+
+    // キャンセルボタン
+    cancel_btn.addEventListener("click", function() {
+        window.close();
+    }, false);
+</script>
+
+</html>
