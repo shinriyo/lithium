@@ -9,28 +9,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js"></script>
 </head>
 
 <body ng-app="app" ng-controller="RootCtrl as root">
-    <webview id="webview_wrapper" src="https://www.netflix.com/"></webview>
+    <webview id="webview_wrapper" class="indicator" src="https://www.netflix.com/">...loading</webview>
 </body>
-<script>
-    "use strict;"
-    onload = () => {
-        const webview = document.querySelector('webview')
-        const indicator = document.querySelector('.indicator')
-
-        const loadstart = () => {
-            indicator.innerText = 'loading...'
-        }
-
-        const loadstop = () => {
-            indicator.innerText = ''
-        }
-
-        webview.addEventListener('did-start-loading', loadstart)
-        webview.addEventListener('did-stop-loading', loadstop)
-    }
-</script>
 
 </html>
