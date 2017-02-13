@@ -28,6 +28,25 @@ try {
     localize = require('./localize/en-US.js');
 }
 
+const path = require('path');
+
+let widevineVersion = '1.4.8.866';
+let baseWidevinePath = './widevine/' + widevineVersion + '/_platform_specific/';
+var widevine_adapter_path = '';
+
+switch (process.platform) {
+    case "win32":
+        widevine_adapter_path = baseWidevinePath + process.platform + "/" + process.arch + '/widevinecdmadapter.dll';
+        break;
+    default:
+        widevine_adapter_path = baseWidevinePath + 'mac_x64/widevinecdmadapter.plugin';
+        break
+}
+
+app.commandLine.appendSwitch('widevine-cdm-path', path.join(__dirname, widevine_adapter_path));
+app.commandLine.appendSwitch('widevine-cdm-version', widevineVersion);
+console.log(path.join(__dirname, widevine_adapter_path));
+
 app.on('ready', function() {
     var user_lang; // = navigator.language || navigator.userLanguage; 
     var osLocale = require('os-locale');
@@ -37,22 +56,24 @@ app.on('ready', function() {
         user_lang = locale;
     });
 
-    const path = require('path');
-    var user_home = app.getPath('appData');
-    let wideVineDrmDir = path.join(user_home, 'Google', 'Chrome',
-        'WidevineCdm', '1.4.8.962', '_platform_specific', 'mac_x64', 'widevinecdmadapter.plugin');
-    console.log(wideVineDrmDir);
-    app.commandLine.appendSwitch('widevine-cdm-path', wideVineDrmDir);
-    app.commandLine.appendSwitch('widevine-cdm-version', '1.4.8.962');
-
     mainWindow = new BrowserWindow({
         webPreferences: {
-            // The `plugins` have to be enabled.
             plugins: true
         },
         width: 1000,
         height: 600
     });
+
+    // var filter = {
+    //     urls: ["https://*.netflix.com/*", "*://www.netflix.com"]
+    // };
+
+    // var userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A344 Safari/601.1';
+    // var ses = mainWindow.webContents.session;
+    // ses.webRequest.onBeforeSendHeaders(filter, function(details, callback) {
+    //     details.requestHeaders['User-Agent'] = userAgent;
+    //     callback({ cancel: false, requestHeaders: details.requestHeaders });
+    // });
 
     // 手前
     mainWindow.setAlwaysOnTop(true);
