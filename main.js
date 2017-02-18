@@ -43,6 +43,7 @@ switch (process.platform) {
         break
 }
 
+// ELECTRON_ENABLE_LOGGING = true;
 app.commandLine.appendSwitch('widevine-cdm-path', path.join(__dirname, widevine_adapter_path));
 app.commandLine.appendSwitch('widevine-cdm-version', widevineVersion);
 console.log(path.join(__dirname, widevine_adapter_path));
@@ -57,11 +58,16 @@ app.on('ready', function() {
     });
 
     mainWindow = new BrowserWindow({
-        webPreferences: {
-            plugins: true
-        },
         width: 1000,
-        height: 600
+        height: 600,
+        backgroundColor: '#000000',
+        'plugins': true,
+        'webPreferences': {
+            'plugins': true,
+            'web-security': false,
+            ' webaudio': true,
+            'extra-plugin-dirs': [__dirname + '/plugins'],
+        }
     });
 
     // var filter = {
