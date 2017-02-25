@@ -30,7 +30,8 @@ try {
 
 const path = require('path');
 
-let widevineVersion = '1.4.8.866';
+//let widevineVersion = '1.4.8.866';
+let widevineVersion = '1.4.8.962';
 let baseWidevinePath = './widevine/' + widevineVersion + '/_platform_specific/';
 var widevine_adapter_path = '';
 
