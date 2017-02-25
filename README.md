@@ -5,7 +5,7 @@ Overview
 
 ## Description
 
-MicrosoftのMSペイント（mspaint.exe）をMac OS Xでも使いたい。
+Netflix for Electon. but not working.
 
 ## Demo
 
